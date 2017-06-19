@@ -8,18 +8,6 @@ table, th, td{
 </head>
 <body>
 
-
-  <table>
-    <tr>
-      <th>Picture</th>
-      <th>Profile</th>
-    </tr>
-    <tr>
-      <td>January</td>
-      <td>$100</td>
-    </tr>
-  </table>
-
 <p align="center">
 <?php
 $json = file_get_contents
