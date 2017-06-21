@@ -14,7 +14,7 @@ import Note from './app/components/Note';
 export default class Iz_ComponentStore extends Component {
 
   state = {
-    noteArray: [ {'date': 'testdate', 'note': 'testnote 1'} ],
+    noteArray: [ ],
     noteText: '',
   }
 
