@@ -23,7 +23,7 @@ export default class IzMinigame extends Component {
       moveEnemyval: new Animated.Value(0),
       enemyStartposX: 0,
       enemySide: 'left',
-      enemySpeed: 3600,
+      enemySpeed: 4000,
 
       gameOver: false,
     };
@@ -57,7 +57,7 @@ export default class IzMinigame extends Component {
           }}>
           </Animated.Image>
 
-          <Enemy enemyImg={require('./src/mainchar.png')}
+          <Enemy enemyImg={require('./src/enemy.png')}
           enemyStartposX={this.state.enemyStartposX}
           moveEnemyval={this.state.moveEnemyval} />
 
@@ -81,7 +81,7 @@ export default class IzMinigame extends Component {
         this.state.movePlayerVal,
         {
           toValue: Dimensions.get('window').width - 140,
-          tension: 120,
+          tension: 520,
         }
       ).start();
 
@@ -92,7 +92,7 @@ export default class IzMinigame extends Component {
         this.state.movePlayerVal,
         {
           toValue: 40,
-          tension: 120,
+          tension: 520,
         }
       ).start();
 
@@ -117,10 +117,8 @@ export default class IzMinigame extends Component {
     }
     this.setState({enemyStartposX:r});
 
-    //Interval to check for collision each 50ms
     var refreshIntervalId;
     refreshIntervalId = setInterval( () => {
-      //collision
       if(this.state.moveEnemyval._value>windowH-280
        && this.state.moveEnemyval._value<windowH-180
        && this.state.playerSide == this.state.enemySide) {
@@ -130,12 +128,10 @@ export default class IzMinigame extends Component {
        }
     },50);
 
-    //increaseEnemy Spped every 20 second
     setInterval( ()=> {
       this.setState({ enemySpeed: this.state.enemySpeed - 50 })
     }, 5000);
 
-    // Animate the enemy
     Animated.timing(
       this.state.moveEnemyval,
       {
@@ -143,7 +139,6 @@ export default class IzMinigame extends Component {
         duration: this.state.enemySpeed,
       }
     ).start(event =>{
-      //If no collision restart enemy animate
       if (event.finished && this.state.gameOver == false){
         clearInterval(refreshIntervalId);
         this.setState({ points: ++this.state.points });
@@ -166,7 +161,7 @@ export default class IzMinigame extends Component {
   }
 
   newgame(){
-      this.setState({ enemySpeed: 3600});
+      this.setState({ enemySpeed: 4000});
       this.setState({ points: 0});
       this.setState({ gameOver: false});
       this.animateEnemy();
